@@ -7,7 +7,7 @@ class Translation
   key :raw_key,             String
   key :value,               String
   key :pluralization_index, Integer
-  key :locale_id,           Integer
+  key :locale_id,           ObjectId
 
   belongs_to :locale
   validates_presence_of :key
