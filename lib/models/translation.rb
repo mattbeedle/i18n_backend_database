@@ -1,6 +1,14 @@
 require 'digest/md5'
 
-class Translation < ActiveRecord::Base
+class Translation
+  include MongoMapper::Document
+
+  key :key,                 String
+  key :raw_key,             String
+  key :value,               String
+  key :pluralization_index, Integer
+  key :locale_id,           Integer
+
   belongs_to :locale
   validates_presence_of :key
   before_validation_on_create :generate_hash_key

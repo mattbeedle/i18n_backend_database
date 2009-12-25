@@ -1,4 +1,9 @@
-class Locale < ActiveRecord::Base
+class Locale
+  include MongoMapper::Document
+
+  key :code, String
+  key :name, String
+
   validates_presence_of :code
   validates_uniqueness_of :code
 
