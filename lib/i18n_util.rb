@@ -1,9 +1,13 @@
 class I18nUtil
 
+  def load_rb(file_name)
+    eval IO.read(file_name), binding, file_name
+  end
+
   # Create tanslation records from the YAML file.  Will create the required locales if they do not exist.
   def self.load_from_yml(file_name)
     if file_name.match(/\.rb/)
-      data = eval(IO.read(file_name, 'rb', file_name))
+      data = load_rb(file_name)
     else
       data = YAML::load(IO.read(file_name))
     end
