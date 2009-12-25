@@ -70,7 +70,7 @@ module I18n
         if !entry && (key.is_a?(String) || key.is_a?(Symbol))
           #We need to escape % and \.  Rails will handle the rest.
           escaped_key = key.to_s.gsub('\\', '\\\\\\\\').gsub(/%/, '\%')
-          children = @locale.translations.find :all, :conditions => ["raw_key like ?", "#{escaped_key}.%"]
+          children = @locale.translations.find :all, :conditions => { "$where" => "this.raw_key.match(/#{escaped_key}/)" }# ["raw_key like ?", "#{escaped_key}.%"]
           if children.size > 0
             entry = hashify_record_array(key.to_s, children)
             @cache_store.write(Translation.ck(@locale, key), entry) unless cache_lookup == true

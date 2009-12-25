@@ -1,5 +1,5 @@
-require File.dirname(__FILE__) + '/models/locale'
 require File.dirname(__FILE__) + '/models/translation'
+require File.dirname(__FILE__) + '/models/locale'
 require File.dirname(__FILE__) + '/models/translation_option'
 require File.dirname(__FILE__) + '/routing'
 require File.dirname(__FILE__) + '/controllers/locales_controller'
