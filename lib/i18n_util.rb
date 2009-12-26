@@ -1,6 +1,6 @@
 class I18nUtil
 
-  def load_rb(file_name)
+  def self.load_rb(file_name)
     eval IO.read(file_name), binding, file_name
   end
 
