@@ -1,6 +1,6 @@
 
 module I18n
-  autoload :Locale, "../models/locale"
+  autoload :Locale, "#{Rails.root}/vendor/plugins/i18n_backend_database/lib/models/locale"
 
   module Backend
     class Database
