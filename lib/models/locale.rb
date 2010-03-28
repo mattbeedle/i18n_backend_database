@@ -35,8 +35,6 @@ class Locale
     conditions.merge!({:value => value}) if (self.code == I18n.default_locale.to_s && key.is_a?(String))
     translation = self.translations.create(conditions)
 
-    # hackity hack.  bug #922 maybe?
-    self.class.connection.commit_db_transaction unless RAILS_ENV['test']
     translation
   end
 

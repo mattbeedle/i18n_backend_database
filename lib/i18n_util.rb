@@ -75,15 +75,18 @@ class I18nUtil
       interpolation_arguments.each { |arg|  options[arg.to_sym] = nil }
       next if object.nil?
 
-      puts "translating for #{object} with options #{options.inspect}" unless RAILS_ENV['test']        
-      I18n.t(object, options) # default locale first
-      locales =  Locale.available_locales
-      locales.delete(I18n.default_locale)
-      # translate for other locales
-      locales.each do |locale|
-        I18n.t(object, options.merge(:locale => locale))
+      begin
+        puts "translating for #{object} with options #{options.inspect}" unless RAILS_ENV['test']        
+        I18n.t(object, options) # default locale first
+        locales =  Locale.available_locales
+        locales.delete(I18n.default_locale)
+        # translate for other locales
+        locales.each do |locale|
+          I18n.t(object, options.merge(:locale => locale))
+        end
+      rescue StandardError => e
+        puts e
       end
-
     end
   end
 

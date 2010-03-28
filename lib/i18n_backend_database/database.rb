@@ -73,7 +73,7 @@ module I18n
           #We need to escape % and \.  Rails will handle the rest.
           escaped_key = key.to_s.gsub('\\', '\\\\\\\\').gsub(/%/, '\%')
           begin
-            children = @locale.translations.all(:conditions => { :raw_key => /#{escaped_key}/ })
+            children = @locale.translations.all(:raw_key => /#{escaped_key}/)
           rescue
             children = []
           end
