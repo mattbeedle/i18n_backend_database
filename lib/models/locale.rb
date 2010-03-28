@@ -17,7 +17,7 @@ class Locale
   @@default_locale = nil
 
   def self.default_locale
-    @@default_locale ||= self.find(:first, :conditions => {:code => I18n.default_locale.to_s})
+    @@default_locale ||= self.first(:conditions => {:code => I18n.default_locale.to_s})
   end
 
   def self.reset_default_locale
@@ -25,7 +25,7 @@ class Locale
   end
 
   def translation_from_key(key)
-    self.translations.find(:first, :conditions => {:key => Translation.hk(key)})
+    self.translations.first(:conditions => {:key => Translation.hk(key)})
   end
 
   def create_translation(key, value, pluralization_index=1)
