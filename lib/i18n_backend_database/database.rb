@@ -1,5 +1,7 @@
 
 module I18n
+  autoload :Locale, "../models/locale"
+
   module Backend
     class Database
       INTERPOLATION_RESERVED_KEYS = %w(scope default)
