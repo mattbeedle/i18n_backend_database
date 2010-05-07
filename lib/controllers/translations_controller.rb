@@ -1,4 +1,6 @@
 class TranslationsController < ActionController::Base
+  unloadable
+
   prepend_view_path(File.join(File.dirname(__FILE__), "..", "views"))
   layout 'translations'
   before_filter :find_locale
