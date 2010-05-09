@@ -36,6 +36,7 @@ module I18n
       # locale, we'll create a translation record with a nil value.  This
       # allows for the lookup of untranslated records in a given locale.
       def translate(locale, key, options = {})
+        return nil if key.blank?
         @locale = locale_in_context(locale)
 
         options[:scope] = [options[:scope]] unless options[:scope].is_a?(Array) || options[:scope].blank?
