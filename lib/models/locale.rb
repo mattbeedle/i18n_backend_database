@@ -1,8 +1,8 @@
 class Locale
-  include MongoMapper::Document
+  include Mongoid::Document
 
-  key :code, String
-  key :name, String
+  field :code
+  field :name
 
   validates_presence_of :code
   validates_uniqueness_of :code

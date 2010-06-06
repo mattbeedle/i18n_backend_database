@@ -1,25 +1,25 @@
 require 'digest/md5'
 
 class Translation
-  include MongoMapper::Document
+  include Mongoid::Document
 
-  key :key,                 String
-  key :raw_key,             String
-  key :value,               String
-  key :pluralization_index, Integer
-  key :locale_id,           ObjectId
+  field :key
+  field :raw_key
+  field :value
+  field :pluralization_index, Integer
 
   belongs_to :locale
   validates_presence_of :key
   before_validation_on_create :generate_hash_key
   after_update  :update_cache
 
-  named_scope :untranslated, :conditions => {:value => nil}, :order => 'raw_key'
+  named_scope :untranslated, :conditions => { :value => nil }, :order => 'raw_key'
   named_scope :translated,   :conditions => { :value => { "$ne" => nil } }, :order => 'raw_key'
 
   def default_locale_value(rescue_value='No default locale value')
     begin
-      Locale.default_locale.translations.find_by_key_and_pluralization_index(self.key, self.pluralization_index).value
+      #Locale.default_locale.translations.find_by_key_and_pluralization_index(self.key, self.pluralization_index).value
+      Locale.default_locale.translations.first(:conditions => { :key => self.key, :pluralization_index => self.pluralization_index }).value
     rescue
       rescue_value
     end
