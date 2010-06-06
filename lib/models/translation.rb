@@ -10,7 +10,7 @@ class Translation
 
   belongs_to_related :locale
   validates_presence_of :key
-  before_validation :generate_hash_key, :on => :create
+  before_validate :generate_hash_key, :on => :create
   after_update  :update_cache
 
   named_scope :untranslated, :conditions => { :value => nil }, :order => 'raw_key'
