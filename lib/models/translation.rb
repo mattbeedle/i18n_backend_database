@@ -8,9 +8,9 @@ class Translation
   field :value
   field :pluralization_index, :type => Integer
 
-  belongs_to :locale
+  belongs_to_related :locale
   validates_presence_of :key
-  before_validation_on_create :generate_hash_key
+  before_validation :generate_hash_key, :on => :create
   after_update  :update_cache
 
   named_scope :untranslated, :conditions => { :value => nil }, :order => 'raw_key'

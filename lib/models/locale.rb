@@ -7,7 +7,7 @@ class Locale
   validates_presence_of :code
   validates_uniqueness_of :code
 
-  has_many :translations, :dependent => :destroy
+  has_many_related :translations, :dependent => :destroy
   named_scope :non_defaults, :conditions => { :code => { '$ne' => I18n.default_locale.to_s } }
 
   #named_scope :english, lambda { |m| { return Hash.new if m.nil?; :conditions => "locales.locale = '#{m}'" } }
