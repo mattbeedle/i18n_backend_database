@@ -6,7 +6,7 @@ class Translation
   field :key
   field :raw_key
   field :value
-  field :pluralization_index, Integer
+  field :pluralization_index, :type => Integer
 
   belongs_to :locale
   validates_presence_of :key
